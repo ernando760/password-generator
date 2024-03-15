@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:password_generator/src/shared/routes/app_router.dart';
 
-class BottomNavigationBarNotifier extends ValueNotifier<int> {
-  BottomNavigationBarNotifier({currentIndex = 0}) : super(currentIndex);
-
-  void changeIndex(int newIndex) {
-    value = newIndex;
-  }
-
-  final Map<int, String> routes = {0: "/", 1: "/passwords"};
-
-  String changeRoute(int index) {
+class BottomNavigationBarNotifier extends ValueNotifier<String> {
+  String initialRoute;
+  BottomNavigationBarNotifier({this.initialRoute = AppRouter.initialRoute})
+      : super(initialRoute);
+  int currentIndex = 0;
+  void changeRoute(int index) {
     if (routes.containsKey(index)) {
-      return routes[index]!;
+      currentIndex = index;
+      value = routes[index]!;
     }
-    return "/";
   }
+
+  late final Map<int, String> routes = {0: initialRoute, 1: "/passwords"};
 }
