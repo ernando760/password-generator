@@ -5,7 +5,9 @@ import 'package:password_generator/src/shared/notifiers/bottom_navigation_bar_no
 import 'package:provider/provider.dart';
 
 class CustomBottomNavigationBarWidget extends StatelessWidget {
-  const CustomBottomNavigationBarWidget({super.key});
+  const CustomBottomNavigationBarWidget({super.key, this.onChanged});
+
+  final void Function(int value)? onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -16,11 +18,12 @@ class CustomBottomNavigationBarWidget extends StatelessWidget {
         borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(20), topRight: Radius.circular(20)),
         child: BottomNavigationBar(
-            currentIndex: notifier.value,
+            currentIndex: notifier.currentIndex,
             onTap: (value) {
-              notifier.changeIndex(value);
-              Navigator.of(context)
-                  .pushReplacementNamed(notifier.changeRoute(value));
+              if (onChanged != null) {
+                onChanged!(value);
+                notifier.changeRoute(value);
+              }
             },
             backgroundColor: red,
             selectedLabelStyle: caption10medium.copyWith(color: white),
