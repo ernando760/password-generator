@@ -1,19 +1,24 @@
 import 'package:flutter/material.dart';
 
 import 'package:password_generator/src/modules/home/model/password_generator_model.dart';
+import 'package:password_generator/src/modules/home/repository/home_repository.dart';
 
 class HomeController extends ChangeNotifier {
-  Set<TypesGenerate> types = {TypesGenerate.upperCase};
+  HomeController(this._repository);
+  final HomeRepository _repository;
+
+  Set<GenerateTypes> types = {GenerateTypes.upperCase};
   late final _passwordGenerator = PasswordGeneratorModel();
-  double max = 3.2;
-  double min = 0.5;
-  double value = 1.6;
-  String get valueToString => (value * 10).toStringAsFixed(0);
 
   String get password => _passwordGenerator.password;
 
-  bool containsType(TypesGenerate type) {
+  bool containsType(GenerateTypes type) {
     return types.contains(type);
+  }
+
+  Future<void> savePassword() async {
+    await _repository.savePassword(password);
+    notifyListeners();
   }
 
   void generate({required String length}) {
@@ -22,7 +27,7 @@ class HomeController extends ChangeNotifier {
     notifyListeners();
   }
 
-  void toggleType(TypesGenerate type) {
+  void toggleType(GenerateTypes type) {
     if (types.contains(type)) {
       types.remove(type);
 
