@@ -1,20 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:password_generator/src/modules/home/controller/home_controller.dart';
-import 'package:password_generator/src/modules/home/repository/home_repository.dart';
 
 import 'package:password_generator/src/modules/home/widgets/card_character_widget.dart';
 import 'package:password_generator/src/modules/home/widgets/cards_check_box_widget.dart';
-import 'package:password_generator/src/modules/services/local_storage.dart';
 
 import 'package:password_generator/src/shared/constant/colors.dart';
 import 'package:password_generator/src/shared/widgets/custom_app_bar_widget.dart';
-import 'package:provider/provider.dart';
-
-final $homeProvider = Provider<HomeRepository>(
-    create: (context) => IHomeRepository(context.read<LocalStorage>()),
-    child: ChangeNotifierProvider(
-        create: (context) => HomeController(context.read<HomeRepository>()),
-        child: const HomeScreen()));
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -61,7 +51,6 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
       )),
-      // bottomNavigationBar: const CustomBottomNavigationBarWidget(),
     );
   }
 }

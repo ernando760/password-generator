@@ -11,7 +11,7 @@ class CheckBoxWidget extends StatelessWidget {
     required this.typesGenerate,
     required this.label,
   });
-  final TypesGenerate typesGenerate;
+  final GenerateTypes typesGenerate;
   final String label;
   @override
   Widget build(BuildContext context) {

@@ -1,8 +1,8 @@
 import 'dart:math' as math;
 
-typedef TypesGenerateParams = Set<TypesGenerate>;
+typedef TypesGenerateParams = Set<GenerateTypes>;
 
-enum TypesGenerate {
+enum GenerateTypes {
   number,
   upperCase,
   lowerCase,
@@ -11,13 +11,13 @@ enum TypesGenerate {
 
 class PasswordGeneratorModel {
   PasswordGeneratorModel(
-      {this.typesGenerate = const {TypesGenerate.upperCase}, this.length = 5});
+      {this.typesGenerate = const {GenerateTypes.upperCase}, this.length = 5});
 
   String _password = "";
   int length;
 
   String get password => _password;
-  final Set<TypesGenerate> typesGenerate;
+  final Set<GenerateTypes> typesGenerate;
 
   final _random = math.Random();
 
@@ -40,11 +40,11 @@ class PasswordGeneratorModel {
     }
   }
 
-  late Map<TypesGenerate, String Function()> mapGenerateRandom = {
-    TypesGenerate.number: _randomNumber,
-    TypesGenerate.upperCase: () => _randomLetter(isLowerCase: false),
-    TypesGenerate.lowerCase: _randomLetter,
-    TypesGenerate.symbols: _randomSymbol
+  late Map<GenerateTypes, String Function()> mapGenerateRandom = {
+    GenerateTypes.number: _randomNumber,
+    GenerateTypes.upperCase: () => _randomLetter(isLowerCase: false),
+    GenerateTypes.lowerCase: _randomLetter,
+    GenerateTypes.symbols: _randomSymbol
   };
   String _randomLetter({bool isLowerCase = true}) {
     final letters = [
@@ -107,13 +107,13 @@ class PasswordGeneratorModel {
     return symbols[randomSymbol];
   }
 
-  void addTypeGenerate(TypesGenerate types) {
+  void addTypeGenerate(GenerateTypes types) {
     if (!typesGenerate.contains(types)) {
       typesGenerate.add(types);
     }
   }
 
-  void removeTypeGenerate(TypesGenerate types) {
+  void removeTypeGenerate(GenerateTypes types) {
     if (typesGenerate.contains(types)) {
       typesGenerate.removeWhere((element) => element.name == types.name);
     }

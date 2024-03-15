@@ -18,9 +18,9 @@ class CardsCheckBoxWidget extends StatelessWidget {
             child: CardCheckBoxWidget(
               checkBoxes: [
                 CheckBoxWidget(
-                    typesGenerate: TypesGenerate.upperCase, label: "ABC"),
+                    typesGenerate: GenerateTypes.upperCase, label: "ABC"),
                 CheckBoxWidget(
-                    typesGenerate: TypesGenerate.lowerCase, label: "abc")
+                    typesGenerate: GenerateTypes.lowerCase, label: "abc")
               ],
             ),
           ),
@@ -31,9 +31,9 @@ class CardsCheckBoxWidget extends StatelessWidget {
             child: CardCheckBoxWidget(
               checkBoxes: [
                 CheckBoxWidget(
-                    typesGenerate: TypesGenerate.number, label: "123"),
+                    typesGenerate: GenerateTypes.number, label: "123"),
                 CheckBoxWidget(
-                    typesGenerate: TypesGenerate.symbols, label: "!#\$")
+                    typesGenerate: GenerateTypes.symbols, label: "!#\$")
               ],
             ),
           ),

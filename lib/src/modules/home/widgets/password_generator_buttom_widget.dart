@@ -20,7 +20,18 @@ class PasswordGeneratorButtomWidget extends StatelessWidget {
               ? () {
                   homeContoller.generate(
                       length: context.read<SliderController>().valueToString);
-                  showDialogPasswordGenerated(context, homeContoller.password);
+                  showDialogPasswordGenerated(
+                    context,
+                    homeContoller.password,
+                    onSave: (password) async {
+                      final messenger = ScaffoldMessenger.of(context);
+                      final nav = Navigator.of(context);
+                      await homeContoller.savePassword();
+                      messenger.showSnackBar(const SnackBar(
+                          elevation: 9, content: Text("A senha foi salva")));
+                      nav.pop();
+                    },
+                  );
                 }
               : null,
           style: ButtonStyle(
