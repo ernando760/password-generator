@@ -58,7 +58,7 @@ p>
 
 <br>
 <p>
-<img src="assets/images/md/password_generator.gif" alt="gif gerador de senhas"/>
+<img src="assets/images/md/password_generator.gif" alt="gif gerador de senhas" width="360", height="720"/>
 </p>
 
 
