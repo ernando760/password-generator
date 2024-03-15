@@ -3,7 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:password_generator/src/shared/constant/colors.dart';
 import 'package:password_generator/src/shared/constant/text_style.dart';
 
-void showDialogPasswordGenerated(BuildContext context, String password) {
+void showDialogPasswordGenerated(BuildContext context, String password,
+    {required void Function(String password) onSave}) {
   showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -54,7 +55,7 @@ void showDialogPasswordGenerated(BuildContext context, String password) {
                     color: white,
                   )),
               IconButton(
-                  onPressed: () {},
+                  onPressed: () => onSave(password),
                   style: IconButton.styleFrom(backgroundColor: green),
                   icon: const Icon(
                     Icons.save_outlined,
